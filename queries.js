@@ -5,8 +5,8 @@ var fs = require('fs'),
     Schema = mongoose.Schema,
     Listing = require('./ListingSchema.js'),
     config = require('./config.js');
-    mongoose.connect(config.db.uri);
-
+    
+mongoose.connect(config.db.uri);
 
 var findLibraryWest = function() {
   Listing.find({ name: "Library West" }, function(err, libWestdata) {
@@ -41,11 +41,11 @@ var removeCable = function() {
 
 var updatePhelpsMemorial = function() {
   Listing.findOneAndUpdate( {name: "Phelps Laboratory"}, 
-                            {address: "100 Phelps Lab P.O. Box 116350 Gainesville, FL  32611"},
-                            //{coordinates:  {
-                              //latitude: 29.621042,
-                              //longitude: -82.366337
-                            //}},
+                            {address: "100 Phelps Lab P.O. Box 116350 Gainesville, FL  32611",
+                             coordinates:  {
+                               latitude: 29.621042,
+                               longitude: -82.366337
+                            }},
                             {'new': true }, 
                             function(err, phelps) {
     if (err) throw err;
