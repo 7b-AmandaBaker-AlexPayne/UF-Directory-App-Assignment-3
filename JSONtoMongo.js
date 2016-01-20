@@ -20,12 +20,14 @@ mongoose.connect('mongodb://janedoe:janedoe@ds047315.mongolab.com:47315/software
 
 var err, data, listingData, entries;
 
-/*fs.readFile( 'listings.json', 'utf-8', function (err, data) {
-  if (err) { return console.error(err); }
-  listingData = JSON.parse(data);
-  });
-//var entires = listingData.entries;
+/*
+   fs.readFile( 'listings.json', 'utf-8', function (err, data) {
+   if (err) { return console.error(err); }
+   listingData = JSON.parse(data);
+   });
+   var entires = listingData.entries;
 */
+
 console.log(listingData);
 entries = listingData.entries;
 console.log(entries.length);
@@ -34,7 +36,7 @@ console.log(entries.length);
 function fillData () {
   console.log('entered fillData()');
   for (var i = 0; i < entries.length; i++){
-    if (entries[i].coordinates && entries[i].address) {
+if (entries[i].coordinates && entries[i].address) {
       var newEntry = new Listing ({
         code: entries[i].code,
         name: entries[i].name,
