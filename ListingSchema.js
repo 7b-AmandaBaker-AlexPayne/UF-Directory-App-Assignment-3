@@ -11,64 +11,22 @@ var listingSchema = new Schema({
     latitude: Number,   // must be a real latitude value
     longitude: Number   // must be a real longitude value
   },
-  address: String
+  address: String,
+  created_at: Date,
+  updated_at: Date
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
 listingSchema.pre('save', function(next) {
   /* your code here */
   var currentDate = new Date();
-
   this.updated_at = currentDate;
-
   if ( !this.created_at )
     this.created_at = currentDate;
-
   next ();
 });
 
 /* Use your schema to instantiate a Mongoose model */
-
-/*listingSchema.save() {
-  if (coordinates && address) {
-    var newEntry = new Listing ({
-      code: code,
-      name: name,
-      coordinates: {
-        latitude: latitude,
-        longitude: longitude
-      },
-      address: address
-    });
-  }
-  else if (entries[i].coordinates) {
-    var newEntry = new Listing({
-      code: code,
-      name: name,
-      coordinates: {
-        latitude: oordinates.latitude,
-        longitude: coordinates.longitude
-      }
-    });
-  }
-  else if (entries[i].address) {
-    var newEntry = new Listing ({
-      code: code,
-      name: name,
-      address: address
-    });
-  }
-  else {
-    var newEntry = new Listing ({
-      code: code,
-      name: name
-    })
-  }
-  console.log('almost saved');
-  newEntry.save();
-  console.log('saved');
-}
-*/
 
 var Listing = mongoose.model('Listing', listingSchema);
 
